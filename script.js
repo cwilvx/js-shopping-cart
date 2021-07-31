@@ -4,7 +4,7 @@ let cart = [];
 
 function appendNode(parent, element){
     parent.appendChild(element);
-}
+};
 
 function getDiv(container){
     return document.getElementById(container);
@@ -15,6 +15,20 @@ function createNode(node){
     return element;
 };
 
+function getDuplicateItems(array){
+    let duplicates = {};
+
+    array.map(function(item){
+        if(duplicates[item]){
+            duplicates[item]++;
+        } else {
+            duplicates[item] = 1;
+        };
+    });
+
+    return duplicates;
+};
+
 function displayCart(grouped_items, cart_node){
     for (const [key, value] of Object.entries(grouped_items)) {
         if(value){
@@ -23,11 +37,9 @@ function displayCart(grouped_items, cart_node){
 
             item_node.innerHTML = `${key} <span class="badge">${value}</span>`;
             appendNode(cart_node, item_node);
-
-            // console.log(key, value);
         };
     };
-}
+};
 
 function displayItems(array, div){
     document.getElementById(div).innerHTML = '';
@@ -43,7 +55,7 @@ function displayItems(array, div){
 
 displayItems(items_array, "container");
 
-function addItemsToCart(action){
+function addOrRemoveItemsToCart(action){
     let container;
 
     if (action === "add"){ 
@@ -68,8 +80,6 @@ function addItemsToCart(action){
         
         let sorted_items = getDuplicateItems(cart);
 
-        console.log(sorted_items);
-
         let cart_node = getDiv("cart");
         cart_node.innerHTML = '';
 
@@ -77,43 +87,5 @@ function addItemsToCart(action){
     });
 };
 
-addItemsToCart('add');
-addItemsToCart('remove');
-
-function getDuplicateItems(array){
-    let duplicates = {};
-
-    array.map(function(item){
-        if(duplicates[item]){
-            duplicates[item]++;
-        } else {
-            duplicates[item] = 1;
-        };
-    });
-
-    return duplicates;
-};
-
-// function removeElementFromcart(){
-//     let container = getDiv("cart");
-
-//     container.addEventListener("click", function(event){
-//         let item_node = event.target;
-//         let item_name = item_node.innerHTML;
-
-//         
-
-//         cart.splice(index, 1);
-
-//         let sorted_items = getDuplicateItems(cart);
-
-//         // console.log(sorted_items);
-
-//         let cart_node = getDiv("cart");
-//         // cart_node.innerHTML = '';
-
-//         displayCart(sorted_items, cart_node);
-//     });
-// };
-
-// removeElementFromcart();
+addOrRemoveItemsToCart('add');
+addOrRemoveItemsToCart('remove');
