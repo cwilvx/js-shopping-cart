@@ -67,3 +67,19 @@ function addItemsToCart(){
 };
 
 addItemsToCart();
+
+function getDuplicateItems(array){
+    let duplicates = {};
+
+    array.map(function(item){
+        if(duplicates[item]){
+            duplicates[item]++;
+        } else {
+            duplicates[item] = 1;
+        };
+    });
+
+    return duplicates;
+};
+
+console.log(getDuplicateItems(items_array));
