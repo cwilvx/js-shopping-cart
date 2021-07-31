@@ -34,3 +34,36 @@ function displayItems(array, div){
 };
 
 displayItems(items_array, "container");
+
+function addItemsToCart(){
+    let container = getDiv("container");
+
+    container.addEventListener("click", function(event){
+        
+        let item_node = event.target;
+        let item_name = item_node.innerHTML;
+
+        cart.push(item_name);
+
+        let sorted_items = getDuplicateItems(cart);
+
+        console.log(sorted_items);
+
+        let cart_node = getDiv("cart");
+        cart_node.innerHTML = '';
+
+        for (const [key, value] of Object.entries(sorted_items)) {
+            if(value){
+                
+                let item_node = createNode("li");
+
+                item_node.innerHTML = `${key} <span class="badge">${value}</span>`;
+                appendNode(cart_node, item_node);
+
+                console.log(key, value);
+            };
+        };
+    });
+};
+
+addItemsToCart();
