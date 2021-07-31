@@ -20,3 +20,17 @@ function displayCart(entry, count){
     cart_node.innerHTML = `${entry}: ${count}`;
     appendNode(container, cart_node);
 };
+
+function displayItems(array, div){
+    document.getElementById(div).innerHTML = '';
+    array.map(function(item){
+        let container = getDiv(div);
+        let item_node = createNode("li");
+
+        item_node.innerHTML = `${item}`;
+        
+        appendNode(container, item_node);
+    });
+};
+
+displayItems(items_array, "container");
