@@ -9,3 +9,8 @@ function appendNode(parent, element){
 function getDiv(container){
     return document.getElementById(container);
 };
+
+function createNode(node){
+    let element = document.createElement(node);
+    return element;
+};
