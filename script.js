@@ -24,7 +24,7 @@ function displayCart(grouped_items, cart_node){
             item_node.innerHTML = `${key} <span class="badge">${value}</span>`;
             appendNode(cart_node, item_node);
 
-            console.log(key, value);
+            // console.log(key, value);
         };
     };
 }
@@ -80,4 +80,26 @@ function getDuplicateItems(array){
     return duplicates;
 };
 
-console.log(getDuplicateItems(items_array));
+function removeElementFromcart(){
+    let container = getDiv("cart");
+
+    container.addEventListener("click", function(event){
+        let item_node = event.target;
+        let item_name = item_node.innerHTML;
+
+        let index = cart.indexOf(item_name);
+
+        cart.splice(index, 1);
+
+        let sorted_items = getDuplicateItems(cart);
+
+        // console.log(sorted_items);
+
+        let cart_node = getDiv("cart");
+        cart_node.innerHTML = '';
+
+        displayCart(sorted_items, cart_node);
+    });
+};
+
+removeElementFromcart();
