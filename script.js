@@ -15,11 +15,19 @@ function createNode(node){
     return element;
 };
 
-function displayCart(entry, count){
-    let cart_node = createNode("li");
-    cart_node.innerHTML = `${entry}: ${count}`;
-    appendNode(container, cart_node);
-};
+function displayCart(grouped_items, cart_node){
+    for (const [key, value] of Object.entries(grouped_items)) {
+        if(value){
+            
+            let item_node = createNode("li");
+
+            item_node.innerHTML = `${key} <span class="badge">${value}</span>`;
+            appendNode(cart_node, item_node);
+
+            console.log(key, value);
+        };
+    };
+}
 
 function displayItems(array, div){
     document.getElementById(div).innerHTML = '';
@@ -52,17 +60,7 @@ function addItemsToCart(){
         let cart_node = getDiv("cart");
         cart_node.innerHTML = '';
 
-        for (const [key, value] of Object.entries(sorted_items)) {
-            if(value){
-                
-                let item_node = createNode("li");
-
-                item_node.innerHTML = `${key} <span class="badge">${value}</span>`;
-                appendNode(cart_node, item_node);
-
-                console.log(key, value);
-            };
-        };
+        displayCart(sorted_items, cart_node);
     });
 };
 
