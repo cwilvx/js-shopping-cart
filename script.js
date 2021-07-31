@@ -43,16 +43,29 @@ function displayItems(array, div){
 
 displayItems(items_array, "container");
 
-function addItemsToCart(){
-    let container = getDiv("container");
+function addItemsToCart(action){
+    let container;
+
+    if (action === "add"){ 
+        container = getDiv("container");
+    } else {
+        container = getDiv("cart");
+    }
+    
+    getDiv("container");
 
     container.addEventListener("click", function(event){
         
         let item_node = event.target;
         let item_name = item_node.innerHTML;
 
-        cart.push(item_name);
-
+        if (action == "add"){
+            cart.push(item_name);
+        } else if (action == "remove"){
+            let index = cart.indexOf(item_name);
+            cart.splice(index, 1);
+        }
+        
         let sorted_items = getDuplicateItems(cart);
 
         console.log(sorted_items);
@@ -64,7 +77,8 @@ function addItemsToCart(){
     });
 };
 
-addItemsToCart();
+addItemsToCart('add');
+addItemsToCart('remove');
 
 function getDuplicateItems(array){
     let duplicates = {};
@@ -80,26 +94,26 @@ function getDuplicateItems(array){
     return duplicates;
 };
 
-function removeElementFromcart(){
-    let container = getDiv("cart");
+// function removeElementFromcart(){
+//     let container = getDiv("cart");
 
-    container.addEventListener("click", function(event){
-        let item_node = event.target;
-        let item_name = item_node.innerHTML;
+//     container.addEventListener("click", function(event){
+//         let item_node = event.target;
+//         let item_name = item_node.innerHTML;
 
-        let index = cart.indexOf(item_name);
+//         
 
-        cart.splice(index, 1);
+//         cart.splice(index, 1);
 
-        let sorted_items = getDuplicateItems(cart);
+//         let sorted_items = getDuplicateItems(cart);
 
-        // console.log(sorted_items);
+//         // console.log(sorted_items);
 
-        let cart_node = getDiv("cart");
-        cart_node.innerHTML = '';
+//         let cart_node = getDiv("cart");
+//         // cart_node.innerHTML = '';
 
-        displayCart(sorted_items, cart_node);
-    });
-};
+//         displayCart(sorted_items, cart_node);
+//     });
+// };
 
-removeElementFromcart();
+// removeElementFromcart();
