@@ -20,3 +20,20 @@ function createNode(node){
     let element = document.createElement(node);
     return element;
 };
+
+function displayItems(items, container){
+    let items_container = getDiv(container);
+    items_container.innerHTML = '';
+    
+    for (let i = 0; i < items.length; i++){
+        let item = items[i];
+        
+        let item_node = createNode("li");
+        item_node.setAttribute("id", item.id);
+        item_node.innerHTML = item.name;
+
+        appendNode(items_container, item_node);
+    }      
+}
+
+displayItems(items_array, "items");
