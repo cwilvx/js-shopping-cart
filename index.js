@@ -37,3 +37,32 @@ function displayItems(items, container){
 }
 
 displayItems(items_array, "items");
+
+function addItemsToCart(){
+    let items_container = getDiv("items");
+    items_container.addEventListener("click", function(event){
+        let item_id = event.target.id;
+
+        let item = items_array.filter(function(item){
+            return item.id == item_id;
+        })[0];
+        
+        // console.log(item);
+
+        let already_in_cart = cart.filter(function(item){
+            return item.id == item_id;
+        })[0];
+
+        console.log(already_in_cart);
+
+        if (already_in_cart == undefined){
+            cart.push(item);
+        } else {
+            already_in_cart.count ++;
+        }
+
+        displayItems(cart, "cart");
+    });
+}
+
+addItemsToCart();
