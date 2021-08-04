@@ -8,17 +8,16 @@
 </head>
 <body>
     <div id="wrapper">
-       <div id="cover">
+       <div id="container">
 
            <h1>Shopping list</h1>
            <div id="items"></div>
        </div>
-        <div id="cover">
+        <div id="container">
             <h1>Cart</h1>
             <div id="cart"></div>
         </div>
     </div>
-    
     <script src="./index.js"></script>
 </body>
 <style>
@@ -40,7 +39,7 @@
         align-items: center;
     }
 
-    .badge {
+    #badge {
         width: 20px;
         height: 20px;
         background-color: #f0ad4e;
@@ -52,8 +51,13 @@
         float: right;
     }
 
-    #cover {
+    #container {
         margin: 50px;
     }
+
+    #items #badge {
+        display: none;
+    }
+
 </style>
 </html>
