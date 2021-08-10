@@ -1,7 +1,14 @@
 ### Creating a shopping cart using arrays and objects in JavaScript
 
 ### Introduction
-Over to you Magic!
+As there are many ways of killing a rat, there are many ways to build a shopping cart.
+
+One way is to use arras and objects
+
+### The approach
+1. You initially have a curated list of shopping items.
+2. Each has a counter.
+3. Decrease or increase the counter on adding the item to cart.
 
 ### Preferences
 To follow along with this tutorial, you are required to have understanding of the following JavaScript methods:
@@ -261,4 +268,6 @@ Passing `add` or `remove` as the action will:
 6. Call the `takeAction` function to remove the item from the cart.
 
 ### Conclusion
-Over to you Magic!
+And that's how you do it. 🤗
+
+Happy coding!
