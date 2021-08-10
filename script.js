@@ -40,36 +40,38 @@ function displayItems(items, container) {
 
 displayItems(items_array, "items");
 
-function takeAction(container) {
-    container.addEventListener("click", function (event) {
-        let item_id = event.target.id;
 
-        if (item_id !== "items" && item_id !== "badge") {
-            let item = items_array.filter(function (item) {
-                return item.id == item_id;
-            })[0];
-
-            let already_in_cart = cart.filter(function (item) {
-                return item.id == item_id;
-            })[0];
-
-            if (already_in_cart == undefined) {
-                cart.push(item);
-            } else if (action == "add") {
-                already_in_cart.count++;
-            } else if (action == "remove") {
-                already_in_cart.count--;
-            }
-
-            console.log(cart);
-            displayItems(cart, "cart");
-        };
-    });
-};
 
 function addOrRemoveItemsFromCart(action) {
     let container = '';
 
+    function takeAction(container) {
+        container.addEventListener("click", function (event) {
+            let item_id = event.target.id;
+    
+            if (item_id !== "items" && item_id !== "badge") {
+                let item = items_array.filter(function (item) {
+                    return item.id == item_id;
+                })[0];
+    
+                let already_in_cart = cart.filter(function (item) {
+                    return item.id == item_id;
+                })[0];
+    
+                if (already_in_cart == undefined) {
+                    cart.push(item);
+                } else if (action == "add") {
+                    already_in_cart.count++;
+                } else if (action == "remove") {
+                    already_in_cart.count--;
+                }
+    
+                console.log(cart);
+                displayItems(cart, "cart");
+            };
+        });
+    };
+    
     if (action == "add") {
         container = getDiv("items");
 
